@@ -1,5 +1,5 @@
 {
-  "name": "legion",
+  "name": "@legion-workspace/cli",
   "version": "0.0.1",
   "description": "Polyrepo helper tool to manage multiple repositories at once",
   "main": "./src/cli.js",
