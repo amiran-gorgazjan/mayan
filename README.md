@@ -1,4 +1,6 @@
-# Legion - the polyrepository helper
+# Legion CLI
+
+**Legion Workspace = NPM Workspaces + Legion CLI**
 
 Legion is a tool to enable a **monorepo-like** workflow in a **polyrepo** setup. It significantly reduces the overhead of handling multiple repositories and allows for a more streamlined workflow.
 
@@ -14,6 +16,10 @@ The main benefits of this approach over monorepos are:
 - You can add and remove repositories from any number of teams and organizations easily at any time
 - You don't need to change your deployment setup, since your repos are all still independent and don't know about each other
 - No partial checkouts - if you don't need a repository on your machine, don't add it
+
+### What `legion` DOESN'T do
+
+No `legion version` command. It is expected that `npm version` and `npm publish` commands are used by the developer as they see fit.
 
 ## Installation
 
