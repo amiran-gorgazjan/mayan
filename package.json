@@ -1,6 +1,6 @@
 {
   "name": "@legion-workspace/cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Polyrepo helper tool to manage multiple repositories at once",
   "repository": "https://github.com/amiran-gorgazjan/legion-workspace-cli",
   "main": "./src/cli.js",
