@@ -81,9 +81,12 @@ The main idea behind Legion Workspace and the CLI tool is to create a single com
 
 ### Publishing the packages
 
-`legion` does not yet support a way to publish packages. This is planned for a future release.
+**`legion` does not yet support a way to automatically publish all affected packages.** This is planned for a future release.
 
-Currently, just use your normal flow for publishing.
+In all affected packages (except the service packages):
+
+1. `npm version major/minor/patch`
+2. `npm publish`
 
 ### Upgrading packages
 
