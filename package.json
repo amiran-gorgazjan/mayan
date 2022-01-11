@@ -1,0 +1,29 @@
+{
+  "name": "legion",
+  "version": "0.0.1",
+  "description": "Polyrepo helper tool to manage multiple repositories at once",
+  "main": "./src/cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "legion": "./bin/legion"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "cli-table": "^0.3.11",
+    "commander": "^8.3.0",
+    "esm": "^3.2.25",
+    "glob": "^7.2.0",
+    "semver": "^7.3.5",
+    "shelljs": "^0.8.4",
+    "simple-git": "^2.48.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.5.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3"
+  }
+}
