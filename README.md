@@ -135,6 +135,7 @@ To push the changes to all services.
 | `commit` | Runs `git commit` in repositories with staged, unstaged and/or tracked changes. |
 | `init` | Initialises repositories defined in `.legionrc.js`, populates `"workspaces"` and runs `npm i` in the root of the workspace. |
 | `link` | Refreshes the workspace root `package.json` `"workspaces"` value. |
+| `list` | Lists the projects. |
 | `pull` | Runs `git pull` in all the repositories. |
 | `push` | Runs `git push` in all the repositories which are ahead of the base branch at least with one commit. |
 | `reset` | Discards all changes (staged, unstaged and untracked) and resets to the latest base branch. |
