@@ -1,4 +1,4 @@
-const runAliasCommand = require('../tools/runAliasCommand');
+const runAliasCommand = require('./tools/runAliasCommand');
 
 runAliasCommand({
     command: args => `git add ${args.join(' ')}`,

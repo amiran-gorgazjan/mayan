@@ -55,6 +55,10 @@ program
 
     .command('pull', 'Pulls all repositories. Alias of "legion -- git pull"', {
         executableFile: resolveRelative('commands/pull.js'),
+    })
+
+    .command('list', 'Lists all repositories.', {
+        executableFile: resolveRelative('commands/list.js'),
     });
 
 // eslint-disable-next-line import/prefer-default-export

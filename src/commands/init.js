@@ -3,8 +3,8 @@ const chalk = require('chalk');
 const shell = require('shelljs');
 const { resolve } = require('path');
 const { existsSync } = require('fs');
-const getConfig = require('../tools/config');
-const link = require('../tools/link');
+const getConfig = require('./tools/config');
+const link = require('./tools/link');
 
 const { info, error } = console;
 const { green } = chalk;

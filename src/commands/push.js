@@ -1,7 +1,7 @@
 const { Command } = require('commander');
 const chalk = require('chalk');
-const forEachProject = require('../tools/forEachProject');
-const getShell = require('../tools/shell');
+const forEachProject = require('./tools/forEachProject');
+const getShell = require('./tools/shell');
 
 const program = new Command();
 
@@ -36,6 +36,13 @@ async function run() {
             const noChanges = canPushResult.trim() === '0';
 
             if (noChanges) {
+                return;
+            }
+
+            const mainDiff = await execAsync(`git rev-list --left-right --count origin/${repository.branch}...${currentBranch}`, { cwd: repoPath });
+            const ahead = mainDiff.trim().split('\t').map(strNumber => Number(strNumber))[1];
+
+            if (!ahead) {
                 return;
             }
 

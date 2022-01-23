@@ -142,7 +142,11 @@ To push the changes to all services.
 | `status` | Quick overview of the changed repositories. <br /> It will show you any repositories that are ahead of the base branch or that have uncommited changes. |
 | `upgrade <packagename>` | Upgrades the package in all repositories. <br /> Runs `npm i packagename@<version>` in all repositories dependent on the package.<br /> The `<version>` will match the value in the local workspace, but it will pull it from the remote registry. |
 
-## Roadmap
+## Roadmap and issues
 
-1. [ ] Support for `-a` in `legion commit -am "Commit message"`
+1. [ ] Support for `-a` in `legion commit -am "Commit message"`. When `-a` is detected, `git commit` will run in repositories that have unstaged changes, too.
 2. [ ] Show unpushed commits in `legion status`
+3. [ ] `legion prune` or similar to clean up unused branches and old merged branches.
+4. [ ] `legion pull` should not fail when remote is not tracked or when remote is already merged/deleted
+5. [ ] `legion push` should not push branch which has been deleted in remote
+6. [ ] Migrate code to TypeScript for better code scaling

@@ -1,7 +1,7 @@
 const { Command } = require('commander');
-const link = require('../tools/link');
-const getShell = require('../tools/shell');
-const getConfig = require('../tools/config');
+const link = require('./tools/link');
+const getShell = require('./tools/shell');
+const getConfig = require('./tools/config');
 
 const program = new Command();
 

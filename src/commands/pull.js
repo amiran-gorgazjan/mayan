@@ -1,6 +1,7 @@
 const { Command } = require('commander');
-const forEachProject = require('../tools/forEachProject');
-const getShell = require('../tools/shell');
+const forEachProject = require('./tools/forEachProject');
+const getShell = require('./tools/shell');
+const getCurrentBranchName = require('./git/getCurrentBranchName');
 
 const program = new Command();
 
@@ -17,7 +18,19 @@ async function run() {
         showMissingWarning: false,
         asynchronous: true,
         callback: async ({ repoPath }) => {
-            await execAsync('git pull', { cwd: repoPath });
+            await execAsync('git remote prune origin', { cwd: repoPath });
+
+            // Get current branch name
+            const currentBranch = await getCurrentBranchName(repoPath);
+
+            // Check if upstream is tracked
+            const remoteBranch = await execAsync(`git ls-remote . origin/${currentBranch}`, { cwd: repoPath });
+            const remoteTracked = Boolean(remoteBranch.trim());
+
+            // Pull, if it is
+            if (remoteTracked) {
+                await execAsync('git pull', { cwd: repoPath });
+            }
         },
     });
 }

@@ -2,8 +2,8 @@
 
 const shell = require('shelljs');
 const chalk = require('chalk');
-const { assertGit } = require('../tools/assertions');
-const getConfig = require('../tools/config');
+const { assertGit } = require('./tools/assertions');
+const getConfig = require('./tools/config');
 
 assertGit();
 

@@ -1,8 +1,8 @@
 const { Command } = require('commander');
 const chalk = require('chalk');
-const forEachProject = require('../tools/forEachProject');
-const getShell = require('../tools/shell');
-const getConfig = require('../tools/config');
+const forEachProject = require('./tools/forEachProject');
+const getShell = require('./tools/shell');
+const getConfig = require('./tools/config');
 
 const program = new Command();
 

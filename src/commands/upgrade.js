@@ -1,7 +1,7 @@
 const { Command } = require('commander');
 const chalk = require('chalk');
-const getShell = require('../tools/shell');
-const getConfig = require('../tools/config');
+const getShell = require('./tools/shell');
+const getConfig = require('./tools/config');
 
 const program = new Command();
 

@@ -1,6 +1,7 @@
-const runAliasCommand = require('../tools/runAliasCommand');
+const runAliasCommand = require('./tools/runAliasCommand');
 
 runAliasCommand({
-    command: args => `git checkout ${args.join(' ')}`,
     description: 'Alias of "legion -- git checkout"',
+    asynchronous: true,
+    command: args => `git checkout ${args.join(' ')}`,
 }).then().catch(e => { console.error(e); process.exit(1); });

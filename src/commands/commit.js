@@ -1,8 +1,9 @@
-const runAliasCommand = require('../tools/runAliasCommand');
-const hasStagedFiles = require('../tools/hasStagedFiles');
+const runAliasCommand = require('./tools/runAliasCommand');
+const hasStagedFiles = require('./git/hasStagedFiles');
 
 runAliasCommand({
     description: 'Commit in all repositories, alias of "legion -- git commit"',
+    asynchronous: true,
 
     async shouldRun({ repoPath }) {
         return await hasStagedFiles(repoPath);

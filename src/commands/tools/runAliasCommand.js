@@ -6,6 +6,7 @@ module.exports = async function runAliasCommand({
     shouldRun = () => true,
     command = () => {},
     description,
+    asynchronous = false,
 }) {
     const program = new Command();
 
@@ -26,13 +27,13 @@ module.exports = async function runAliasCommand({
     const commandToRun = command(addArgs);
 
     await forEachProject({
+        asynchronous,
         callback: async repository => {
             console.info(`${repository.repoPath} > ${commandToRun}`);
 
             const isValid = await Promise.resolve(shouldRun(repository));
 
             if (!isValid || !commandToRun) {
-                console.info('> Skipped');
                 return;
             }
 

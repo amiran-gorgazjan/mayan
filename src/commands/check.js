@@ -5,7 +5,7 @@ const { readFileSync } = require('fs');
 const chalk = require('chalk');
 const semver = require('semver');
 const { Command } = require('commander');
-const getConfig = require('../tools/config');
+const getConfig = require('./tools/config');
 
 const program = new Command();
 
