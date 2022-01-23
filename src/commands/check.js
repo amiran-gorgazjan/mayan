@@ -14,6 +14,7 @@ program
     .option('-a, --all', 'Shows both matching and mismatching packages')
     .parse(process.argv);
 
+const targetPackages = program.args || [];
 const programOpts = program.opts();
 const warning = chalk.hex('#CCA500');
 const error = chalk.hex('#FF2222');
@@ -38,7 +39,7 @@ async function run() {
         };
     });
 
-    projects.forEach(project => {
+    projects.filter(p => p !== null).forEach(project => {
         const dependencyGroups = [
             ['dev-/dependencies', { ...project.packageJson.dependencies, ...project.packageJson.devDependencies }, 'exact'],
             ['peerDependencies', project.packageJson.peerDependencies, 'loose'],
@@ -65,6 +66,10 @@ async function run() {
 
             Object.entries(dependencyGroup)
                 .forEach(([name, version]) => {
+                    if (targetPackages.length > 0 && !targetPackages.includes(name)) {
+                        return true;
+                    }
+
                     const wsProject = projects.find(p => p.packageJson.name === name);
 
                     if (!wsProject) {
