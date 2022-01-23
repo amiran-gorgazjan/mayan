@@ -12,7 +12,7 @@ program
 
 const { info, error } = console;
 const {
-    green, yellow, gray,
+    green, yellow, gray, red,
 } = chalk;
 
 async function run() {
@@ -23,10 +23,10 @@ async function run() {
         callback: async ({
             repository, repoPath, exists,
         }) => ({
-            name: repository.packageJson.name,
+            name: exists ? repository.packageJson.name : repository.path,
             path: repository.path,
             absPath: repoPath,
-            branch: await getCurrentBranchName(repoPath),
+            branch: exists ? await getCurrentBranchName(repoPath) : '',
             exists,
         }),
     });
@@ -34,12 +34,20 @@ async function run() {
     reports.forEach(({
         absPath, branch, exists, name,
     }) => {
-        info([
-            exists ? green('✓') : yellow('✗'),
-            name,
-            green(`(${branch})`),
-            gray(absPath),
-        ].join(' '));
+        if (exists) {
+            info([
+                green('✓'),
+                name,
+                green(`(${branch})`),
+                gray(absPath),
+            ].join(' '));
+        } else {
+            info([
+                red('✗'),
+                yellow(name),
+                yellow('(Missing. Run "legion init" to add it.)'),
+            ].join(' '));
+        }
     });
 }
 
