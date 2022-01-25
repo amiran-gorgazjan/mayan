@@ -1,5 +1,8 @@
 # Legion CLI
 
+[![npm](https://img.shields.io/npm/v/@legion-workspace/cli.svg?cacheSeconds=3600)](https://www.npmjs.com/package/@legion-workspace/cli)
+[![downloads](https://img.shields.io/npm/dt/@legion-workspace/cli.svg?cacheSeconds=3600)](https://www.npmjs.com/package/@legion-workspace/cli)
+
 **Legion Workspace = NPM Workspaces + Legion CLI**
 
 Legion is a tool to enable a **monorepo-like** workflow in a **polyrepo** setup. It significantly reduces the overhead of handling multiple repositories and allows for a more streamlined workflow.
