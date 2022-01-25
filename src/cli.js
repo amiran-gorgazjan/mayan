@@ -59,6 +59,10 @@ program
 
     .command('list', 'Lists all repositories.', {
         executableFile: resolveRelative('commands/list.js'),
+    })
+
+    .command('switch', 'Switch to branch in all repositories.', {
+        executableFile: resolveRelative('commands/switch.js'),
     });
 
 // eslint-disable-next-line import/prefer-default-export

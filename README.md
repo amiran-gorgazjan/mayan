@@ -141,7 +141,8 @@ To push the changes to all services.
 | `reset` | Discards all changes (staged, unstaged and untracked) and resets to the latest base branch. |
 | `run '<command>'` | Runs the command in all repositories. Notice the upticks. |
 | `status` | Quick overview of the changed repositories. <br /> It will show you any repositories that are ahead of the base branch or that have uncommited changes. |
-| `upgrade <packagename>` | Upgrades the package in all repositories. <br /> Runs `npm i packagename@<version>` in all repositories dependent on the package.<br /> The `<version>` will match the value in the local workspace, but it will pull it from the remote registry. |
+| `switch <branch-name>` | Switches to the branch in all repositories. |
+| `upgrade <package-name>` | Upgrades the package in all repositories. <br /> Runs `npm i package-name@<version>` in all repositories dependent on the package.<br /> The `<version>` will match the value in the local workspace, but it will pull it from the remote registry. |
 
 ## Roadmap and issues
 
