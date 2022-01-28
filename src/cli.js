@@ -63,6 +63,10 @@ program
 
     .command('switch', 'Switch to branch in all repositories.', {
         executableFile: resolveRelative('commands/switch.js'),
+    })
+
+    .command('snap', 'Create a snapshot of the current branch state of the repositories.', {
+        executableFile: resolveRelative('commands/list.js'),
     });
 
 // eslint-disable-next-line import/prefer-default-export

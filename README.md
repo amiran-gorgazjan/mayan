@@ -1,28 +1,20 @@
 # Legion CLI
 
-[![npm](https://img.shields.io/npm/v/@legion-workspace/cli.svg?cacheSeconds=3600)](https://www.npmjs.com/package/@legion-workspace/cli)
-[![downloads](https://img.shields.io/npm/dt/@legion-workspace/cli.svg?cacheSeconds=3600)](https://www.npmjs.com/package/@legion-workspace/cli)
+[![npm](https://img.shields.io/npm/v/@legion-workspace/cli.svg?cacheSeconds=3600)](https://www.npmjs.com/package/@legion-workspace/cli) [![downloads](https://img.shields.io/npm/dt/@legion-workspace/cli.svg?cacheSeconds=3600)](https://www.npmjs.com/package/@legion-workspace/cli) [![license](https://img.shields.io/npm/l/@legion-workspace/cli.svg?cacheSeconds=3600)](https://www.npmjs.com/package/@legion-workspace/cli)
 
-**Legion Workspace = NPM Workspaces + Legion CLI**
+Legion workspace speeds up multi-repository workflows. Compared to monorepos, Legion fully embraces a poly-repository environment. It significantly reduces the overhead of handling multiple repositories and allows for a more streamlined workflow.
 
-Legion is a tool to enable a **monorepo-like** workflow in a **polyrepo** setup. It significantly reduces the overhead of handling multiple repositories and allows for a more streamlined workflow.
+Legion is specifically designed for NPM packaged projects. Legion currently relies on NPM Workspace for linking (Yarn support to come).
 
-Legion relies heavily on NPM Workspaces (Yarn support to come).
+**NB!** Currently, `legion` does not yet calculate the dependency graph for the workspace, so it will not recursively version up affected packages. Therefore, NPM package versioning and publishing should still be done manually.
 
-## The idea
+## Table of contents
 
-Monorepos solve branch-management overhead by having every change in a single branch. **`Legion` solves branch-management by having every repository on a branch with the same name.** You create, push, and merge branches in a single command for all the repositories at once.
-
-The main benefits of this approach over monorepos are:
-
-- You can use `Legion` without changing the setup of your repositories
-- You can add and remove repositories from any number of teams and organizations easily at any time
-- You don't need to change your deployment setup, since your repos are all still independent and don't know about each other
-- No partial checkouts - if you don't need a repository on your machine, don't add it
-
-### What `legion` DOESN'T do
-
-No `legion version` command. It is expected that `npm version` and `npm publish` commands are used by the developer as they see fit.
+- [Installation](#installation)
+- [Setup](#setup)
+- [Commands](#commands)
+- [Usage](#usage)
+- [Roadmap and issues](#roadmap-and-issues)
 
 ## Installation
 
@@ -76,11 +68,31 @@ legion init
 
 This will clone the repositories defined in `.legionrc.js` into the directories defined in the `path` properties.
 
+## Commands
+
+| Command | Description |
+|---|---|
+| `help` | Shows a list of all commands. |
+| `add` | Runs `git add` in all the repositories. Simple alias of `legion run 'git add'` |
+| `check [-a]` | Checks the compatibility of dependencies compared to the local packages. Incompatible packages are unlinked, compatible packages are linked. <br /> If the package is <span style="font-weight:bold;color:red">red</span>, it will be unlinked. If it is <span style="font-weight:bold;color:green">green</span> or <span style="font-weight:bold;color:orange">orange</span>, it will be linked. |
+| `checkout` | Runs `git checkout` in all the repositories. Simple alias of `legion run 'git checkout'` |
+| `commit` | Runs `git commit` in repositories with staged, unstaged and/or tracked changes. |
+| `init` | Initialises repositories defined in `.legionrc.js`, populates `"workspaces"` and runs `npm i` in the root of the workspace. |
+| `link` | Refreshes the workspace root `package.json` `"workspaces"` value. |
+| `list` | Lists the projects. |
+| `pull` | Runs `git pull` in all the repositories. |
+| `push` | Runs `git push` in all the repositories which are ahead of the base branch at least with one commit. |
+| `reset` | Discards all changes (staged, unstaged and untracked) and resets to the latest base branch. |
+| `run '<command>'` | Runs the command in all repositories. Notice the upticks. |
+| `status` | Quick overview of the changed repositories. <br /> It will show you any repositories that are ahead of the base branch or that have uncommited changes. |
+| `switch <branch-name>` | Switches to the branch in all repositories. |
+| `upgrade <package-name>` | Upgrades the package in all repositories. <br /> Runs `npm i package-name@<version>` in all repositories dependent on the package.<br /> The `<version>` will match the value in the local workspace, but it will pull it from the remote registry. |
+
 ## Usage
 
-The main idea behind Legion Workspace and the CLI tool is to create a single command that can be used to manage multiple repositories. As such, instead of creating a branch manually in each repository for a feature development, we create it with `legion` in all repositories at once, even in the ones we will not use for the feature. In the end, we will simply not push out the feature branch in the repositories we don't have changes in.
-
 ### Starting a new feature branch
+
+Implementing a feature is symmetric to `git` commands. A workflow example:
 
 1. `legion reset` makes sure we have the latest changes and are on the base branch
 2. `legion checkout -b new-branch-name` creates a new branch in all repositories
@@ -90,12 +102,9 @@ The main idea behind Legion Workspace and the CLI tool is to create a single com
 
 ### Publishing the packages
 
-**`legion` does not yet support a way to automatically publish all affected packages.** This is planned for a future release.
+**`legion` does not yet support a way to automatically publish all affected packages.**
 
-In all affected packages (except the service packages):
-
-1. `npm version major/minor/patch`
-2. `npm publish`
+It is currently expected that you version and publish the packages manually with `npm version` and `npm publish` in the affected repositories.
 
 ### Upgrading packages
 
@@ -113,7 +122,7 @@ Use:
 legion check
 ```
 
-To check that all your repositories use the correct package version. If not, they will show up either yellow or red with the required version numbers defined.
+To check that all your repositories use the compatible package version. If not, they will show up either yellow or red with the required version numbers defined.
 
 You can then use
 
@@ -123,35 +132,19 @@ You can then use
 
 To push the changes to all services.
 
-### Deploying any services
+### Deploying services
 
-`legion` does not yet support a way to deploy. **This is not planned.** Currently, just use your normal flow for publishing.
-
-## List of all commands
-
-| Command | Description |
-|---|---|
-| `help` | Shows a list of all commands. |
-| `add` | Runs `git add` in all the repositories. Simple alias of `legion run 'git add'` |
-| `check [-a]` | Shows you the versions of the packages that are out of sync with the workspace. <br /> If the package is <span style="font-weight:bold;color:red">red</span>, it will be unlinked. If it is <span style="font-weight:bold;color:green">green</span> or <span style="font-weight:bold;color:orange">orange</span>, it will be linked. |
-| `checkout` | Runs `git checkout` in all the repositories. Simple alias of `legion run 'git checkout'` |
-| `commit` | Runs `git commit` in repositories with staged, unstaged and/or tracked changes. |
-| `init` | Initialises repositories defined in `.legionrc.js`, populates `"workspaces"` and runs `npm i` in the root of the workspace. |
-| `link` | Refreshes the workspace root `package.json` `"workspaces"` value. |
-| `list` | Lists the projects. |
-| `pull` | Runs `git pull` in all the repositories. |
-| `push` | Runs `git push` in all the repositories which are ahead of the base branch at least with one commit. |
-| `reset` | Discards all changes (staged, unstaged and untracked) and resets to the latest base branch. |
-| `run '<command>'` | Runs the command in all repositories. Notice the upticks. |
-| `status` | Quick overview of the changed repositories. <br /> It will show you any repositories that are ahead of the base branch or that have uncommited changes. |
-| `switch <branch-name>` | Switches to the branch in all repositories. |
-| `upgrade <package-name>` | Upgrades the package in all repositories. <br /> Runs `npm i package-name@<version>` in all repositories dependent on the package.<br /> The `<version>` will match the value in the local workspace, but it will pull it from the remote registry. |
+It is expected that you use your own deployment flow to deploy the services. `legion` does not restrict you to using a specific deployment flow and will not do so in the future.
 
 ## Roadmap and issues
 
-1. [ ] Support for `-a` in `legion commit -am "Commit message"`. When `-a` is detected, `git commit` will run in repositories that have unstaged changes, too.
-2. [ ] Show unpushed commits in `legion status`
-3. [ ] `legion prune` or similar to clean up unused branches and old merged branches.
-4. [ ] `legion pull` should not fail when remote is not tracked or when remote is already merged/deleted
-5. [ ] `legion push` should not push branch which has been deleted in remote
-6. [ ] Migrate code to TypeScript for better code scaling
+In no particular order
+
+- [ ] Support for `-a` in `legion commit -am "Commit message"`. When `-a` is detected, `git commit` will run in repositories that have unstaged changes, too.
+- [ ] Show unpushed commits in `legion status`
+- [ ] `legion prune` or similar to clean up unused branches and old merged branches.
+- [ ] `legion pull` should not fail when remote is not tracked or when remote is already merged/deleted
+- [ ] `legion push` should not push branch which has been deleted in remote
+- [ ] Migrate code to TypeScript for better code scaling
+- [ ] `legion reset` should show the changes that are going to be discarded and ask the user for confirmation before continuing
+- [ ] `legion snap` should create a snapshot of the current state of the workspace. This includes the branch state, stashed and unstanshed changes

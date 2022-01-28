@@ -1,10 +1,10 @@
 const { Command } = require('commander');
 const chalk = require('chalk');
 const shell = require('shelljs');
-const { resolve } = require('path');
-const { existsSync } = require('fs');
 const getConfig = require('./tools/config');
 const link = require('./tools/link');
+const getShell = require('./tools/shell');
+const forEachProject = require('./tools/forEachProject');
 
 const { info, error } = console;
 const { green } = chalk;
@@ -14,31 +14,34 @@ program
     .description('Clone all repositories defined in .legionrc.js and run npm i at the end.');
 
 program.parse(process.argv);
+const { execAsync } = getShell(program.opts());
 
 async function run() {
     const config = await getConfig({ includeMissing: true });
 
-    config.repositories.forEach(repository => {
-        const { path, branch, url } = repository;
+    await forEachProject({
+        showMissingWarning: false,
+        includeMissing: true,
+        asynchronous: true,
+        callback: async ({
+            repository, repoPath, exists,
+        }) => {
+            const { path, branch, url } = repository;
 
-        const repoPath = resolve(config.dirname, path);
+            // Skip the repository already exists
+            if (exists) {
+                return;
+            }
 
-        // Skip the repository already exists
-        if (existsSync(repoPath)) {
-            return;
-        }
+            info(path, green(`Cloning ${url}...`));
+            await execAsync(`git clone ${url} ${repoPath}`, { cwd: config.dirname });
 
-        info(green(`Initialising ${path}...`));
+            info(path, green(`Checking out ${branch}...`));
+            await execAsync(`git checkout ${branch}`, { cwd: repoPath });
 
-        shell.cd(config.dirname);
-
-        info(green(`Cloning ${url}...`));
-        shell.exec(`git clone ${url} ${repoPath}`);
-
-        shell.cd(repoPath);
-
-        info(green(`Checking out ${branch}...`));
-        shell.exec(`git checkout ${branch}`);
+            info(path, green('Running the first time local installation...'));
+            await execAsync('npm i', { cwd: repoPath });
+        },
     });
 
     await link();
