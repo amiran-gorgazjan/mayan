@@ -1,6 +1,6 @@
 {
   "name": "hulky",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Polyrepo helper tool to manage multiple repositories at once",
   "repository": "https://github.com/amiran-gorgazjan/hulky",
   "main": "./src/cli.js",
