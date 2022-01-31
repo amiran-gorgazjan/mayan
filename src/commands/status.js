@@ -72,7 +72,7 @@ async function run() {
         name, branch, exists, changes, isActive, isChanged, behind, ahead,
     } of reports) {
         if (!exists) {
-            info(yellow(`${name} does not exist. Run 'hulky init' to initialize uncloned repositories.`));
+            info(yellow(`${name} does not exist. Run 'mayan init' to initialize uncloned repositories.`));
             continue;
         }
 

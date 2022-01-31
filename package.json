@@ -1,14 +1,14 @@
 {
-  "name": "hulky",
+  "name": "mayan",
   "version": "0.2.0",
   "description": "Polyrepo helper tool to manage multiple repositories at once",
-  "repository": "https://github.com/amiran-gorgazjan/hulky",
+  "repository": "https://github.com/amiran-gorgazjan/mayan",
   "main": "./src/cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "hulky": "./bin/hulky"
+    "mayan": "./bin/mayan"
   },
   "author": "",
   "license": "ISC",

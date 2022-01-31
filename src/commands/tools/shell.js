@@ -39,7 +39,7 @@ module.exports = function getShell(commandLineOptions) {
                     console.error(result.stderr);
                 }
             } catch (error) {
-                throw new Error(`[hulky:execAsync @ (${options.cwd})] Fatal Error: ${error.message}`);
+                throw new Error(`[mayan:execAsync @ (${options.cwd})] Fatal Error: ${error.message}`);
             }
 
             return result.stdout;

@@ -10,7 +10,7 @@ const getConfig = require('./tools/config');
 const program = new Command();
 
 program
-    .description('Compare versions of packages in repositories defined in .hulky.js')
+    .description('Compare versions of packages in repositories defined in .mayan.js')
     .option('-a, --all', 'Shows both matching and mismatching packages')
     .parse(process.argv);
 

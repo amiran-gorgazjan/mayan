@@ -2,7 +2,7 @@ const runAliasCommand = require('./tools/runAliasCommand');
 const hasStagedFiles = require('./git/hasStagedFiles');
 
 runAliasCommand({
-    description: 'Commit in all repositories, alias of "hulky -- git commit"',
+    description: 'Commit in all repositories, alias of "mayan -- git commit"',
     asynchronous: true,
 
     async shouldRun({ repoPath }) {
