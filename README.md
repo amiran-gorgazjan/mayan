@@ -24,9 +24,9 @@ npm install -g mayan
 
 ## Setup
 
-### 1. Set up .mayanrc.js
+### 1. Set up .mayan.js
 
-Define your repositories in `.mayanrc.js` in the root of your workspace
+Define your repositories in `.mayan.js` in the root of your workspace
 
 ```js
 module.exports = {
