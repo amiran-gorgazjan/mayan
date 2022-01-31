@@ -9,7 +9,7 @@ const { bgYellow, black } = chalk;
 let config;
 
 function warnMissing(path) {
-    warn(bgYellow(black('WARN')), `${path} does not exist. Run 'legion init' to initialize uncloned repositories.`);
+    warn(bgYellow(black('WARN')), `${path} does not exist. Run 'hulky init' to initialize uncloned repositories.`);
 }
 
 module.exports = async function forEachProject({

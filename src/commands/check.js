@@ -10,7 +10,7 @@ const getConfig = require('./tools/config');
 const program = new Command();
 
 program
-    .description('Compare versions of packages in repositories defined in .legionrc.js')
+    .description('Compare versions of packages in repositories defined in .hulky.js')
     .option('-a, --all', 'Shows both matching and mismatching packages')
     .parse(process.argv);
 

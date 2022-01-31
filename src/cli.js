@@ -27,11 +27,11 @@ program
         executableFile: resolveRelative('commands/push.js'),
     })
 
-    .command('add', 'Adds all files to staging. Alias of "legion -- git add ..."', {
+    .command('add', 'Adds all files to staging. Alias of "hulky -- git add ..."', {
         executableFile: resolveRelative('commands/add.js'),
     })
 
-    .command('commit', 'Commits in all repositories. Alias of "legion -- git commit ..."', {
+    .command('commit', 'Commits in all repositories. Alias of "hulky -- git commit ..."', {
         executableFile: resolveRelative('commands/commit.js'),
     })
 
@@ -39,7 +39,7 @@ program
         executableFile: resolveRelative('commands/status.js'),
     })
 
-    .command('link', 'Update package.json workspaces based on .legionrc.js', {
+    .command('link', 'Update package.json workspaces based on .hulkyrc.js', {
         executableFile: resolveRelative('commands/link.js'),
     })
 
@@ -49,11 +49,11 @@ program
         { executableFile: resolveRelative('commands/upgrade.js') },
     )
 
-    .command('checkout', 'Alias of "legion -- git checkout"', {
+    .command('checkout', 'Alias of "hulky -- git checkout"', {
         executableFile: resolveRelative('commands/checkout.js'),
     })
 
-    .command('pull', 'Pulls all repositories. Alias of "legion -- git pull"', {
+    .command('pull', 'Pulls all repositories. Alias of "hulky -- git pull"', {
         executableFile: resolveRelative('commands/pull.js'),
     })
 

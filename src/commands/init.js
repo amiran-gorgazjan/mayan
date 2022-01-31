@@ -11,7 +11,7 @@ const { green } = chalk;
 const program = new Command();
 
 program
-    .description('Clone all repositories defined in .legionrc.js and run npm i at the end.');
+    .description('Clone all repositories defined in .hulkyrc.js and run npm i at the end.');
 
 program.parse(process.argv);
 const { execAsync } = getShell(program.opts());
@@ -50,7 +50,7 @@ async function run() {
     shell.cd(config.dirname);
     shell.exec('npm i');
 
-    info(green('Done! You can now run legion check to compare the versions of the packages in the repositories.'));
+    info(green('Done! You can now run hulky check to compare the versions of the packages in the repositories.'));
 }
 
 run().then().catch(e => { error(e); process.exit(1); });

@@ -45,7 +45,7 @@ async function run() {
             info([
                 red('✗'),
                 yellow(name),
-                yellow('(Missing. Run "legion init" to add it.)'),
+                yellow('(Missing. Run "hulky init" to add it.)'),
             ].join(' '));
         }
     });

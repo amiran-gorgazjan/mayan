@@ -4,9 +4,9 @@ const { promisify } = require('util');
 
 const readFile = promisify(fs.readFile);
 
-// Recursively find the .legionrc.js file in the current directory or its parents
-function findLegionRc(dir) {
-    const filePath = resolve(dir, '.legionrc.js');
+// Recursively find the .hulkyrc.js file in the current directory or its parents
+function findHulkyRc(dir) {
+    const filePath = resolve(dir, '.hulkyrc.js');
 
     if (fs.existsSync(filePath)) {
         return filePath;
@@ -18,14 +18,14 @@ function findLegionRc(dir) {
         return null;
     }
 
-    return findLegionRc(parentDir);
+    return findHulkyRc(parentDir);
 }
 
-const filePath = findLegionRc(process.cwd());
+const filePath = findHulkyRc(process.cwd());
 
 if (!filePath) {
     // eslint-disable-next-line no-console
-    console.error('No .legionrc.js file found in the current directory or its parents');
+    console.error('No .hulkyrc.js file found in the current directory or its parents');
     process.exit(1);
 }
 

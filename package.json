@@ -1,14 +1,14 @@
 {
-  "name": "@legion-workspace/cli",
+  "name": "hulky",
   "version": "0.1.1",
   "description": "Polyrepo helper tool to manage multiple repositories at once",
-  "repository": "https://github.com/amiran-gorgazjan/legion-workspace-cli",
+  "repository": "https://github.com/amiran-gorgazjan/hulky",
   "main": "./src/cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "legion": "./bin/legion"
+    "hulky": "./bin/hulky"
   },
   "author": "",
   "license": "ISC",
