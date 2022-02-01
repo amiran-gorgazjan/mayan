@@ -10,6 +10,12 @@
   "bin": {
     "mayan": "./bin/mayan"
   },
+  "files": [
+    "bin",
+    "src",
+    "package.json",
+    "package-lock.json"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
