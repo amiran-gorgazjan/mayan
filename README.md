@@ -2,7 +2,9 @@
 
 [![npm](https://img.shields.io/npm/v/mayan.svg?cacheSeconds=3600)](https://www.npmjs.com/package/mayan) [![downloads](https://img.shields.io/npm/dt/mayan.svg?cacheSeconds=3600)](https://www.npmjs.com/package/mayan) [![license](https://img.shields.io/npm/l/mayan.svg?cacheSeconds=3600)](https://www.npmjs.com/package/mayan)
 
-Mayan workspace speeds up multi-repository workflows. Compared to monorepos, Mayan fully embraces a poly-repository environment. It significantly reduces the overhead of handling multiple repositories and allows for a more streamlined workflow.
+<img src="docs/images/mayan.png" style="display:block; margin: 1em auto 2em auto;">
+
+Mayan speeds up multi-repository workflows by providing commands that manage all repositories in the workspace at once. Compared to monorepos, Mayan fully embraces a poly-repository environment. It significantly reduces the overhead of adding changes to a large number of repositories and allows for a more streamlined workflow.
 
 Mayan is specifically designed for NPM packaged projects. Mayan currently relies on NPM Workspace for linking (Yarn support to come).
 
