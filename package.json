@@ -1,6 +1,6 @@
 {
   "name": "mayan",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Polyrepo helper tool to manage multiple repositories at once",
   "repository": "https://github.com/amiran-gorgazjan/mayan",
   "main": "./src/cli.js",
